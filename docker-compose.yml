@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        TIM_PLACEHOLDER: "Tim Alpha"
+        DIVISI_PLACEHOLDER: "Teknik Informatika"
+        KAMPUS_PLACEHOLDER: "STMIK Tazkia"
+    ports:
+      - "8080:80"
+    volumes:
+      - ./html/data/anggota.json:/usr/share/nginx/html/data/anggota.json
+    secrets:
+      - username
+      - password
+
+secrets:
+  username:
+    file: ./secrets/username.txt
+  password:
+    file: ./secrets/password.txt
